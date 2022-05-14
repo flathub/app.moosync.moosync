@@ -50,6 +50,6 @@ modules:
       - chmod +x /app/Moosync/moosync
       - install -d /app/share/applications
       - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
-      - desktop-file-edit --set-key=Exec --set-value=Exec=moosync /app/share/applications/${FLATPAK_ID}.desktop
+      - desktop-file-edit --set-key=Exec --set-value=/app/bin/moosync /app/share/applications/${FLATPAK_ID}.desktop
       - cp -r Moosync/share/icons /app/share/icons
       - install -D app.moosync.moosync.appdata.xml --target-directory=/app/share/metainfo/
