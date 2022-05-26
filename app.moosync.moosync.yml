@@ -30,9 +30,9 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v2.1.0/Moosync-2.1.0-linux-x64.pacman
+        url: https://github.com/Moosync/Moosync/releases/download/v3.0.0/Moosync-3.0.0-linux-x64.pacman
         sha256: eebdd3f053032dfb786422ec42ab2a2ab8a82938a6dbde7205d196fd3c080ab9
-        dest-filename: Moosync-2.1.0-linux-x64.tar.xz
+        dest-filename: Moosync-3.0.0-linux-x64.tar.xz
         dest: Moosync
 
       - type: file
