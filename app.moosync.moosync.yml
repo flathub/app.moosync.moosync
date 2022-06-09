@@ -12,10 +12,11 @@ separate-locales: false
 finish-args:
   - --share=ipc
   - --socket=x11
-  - - --socket=pulseaudio
-  - - --share=network
-  - - --filesystem=xdg-music
-  - - --device=dri
+  - --socket=pulseaudio
+  - --share=network
+  - --filesystem=xdg-music
+  - --device=dri
+  - --socket=session-bus
 cleanup:
   - "/include"
   - "/lib/girepository-1.0"
