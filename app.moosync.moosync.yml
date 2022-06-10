@@ -16,7 +16,6 @@ finish-args:
   - --share=network
   - --filesystem=xdg-music
   - --device=dri
-  - --socket=session-bus
 cleanup:
   - "/include"
   - "/lib/girepository-1.0"
