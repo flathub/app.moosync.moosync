@@ -120,7 +120,7 @@ modules:
         dest-filename: moosync.sh
         commands:
           # TODO: Find a way to get extension-host and relaunch working with zypak
-          - /app/Moosync/moosync --no-sandbox "$@"
+          - TMPDIR=$XDG_RUNTIME_DIR/$APP_ID/ && /app/Moosync/moosync --no-sandbox "$@"
 
     build-commands:
       # Copy prebuilt JS files
