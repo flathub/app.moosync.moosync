@@ -77,6 +77,11 @@ modules:
       - type: archive
         url: https://github.com/libvips/libvips/releases/download/v8.12.2/vips-8.12.2.tar.gz
         sha256: 565252992aff2c7cd10c866c7a58cd57bc536e03924bde29ae0f0cb9e074010b
+        x-checker-data:
+            type: json
+            url: https://api.github.com/repos/libvips/libvips/releases/latest
+            version-query: .tag_name | sub("^v"; "")
+            url-query: ".assets[] | select(.name==\"vips-\" + $version + \".tar.gz\") | .browser_download_url"
 
   - name: yarn
     buildsystem: simple
