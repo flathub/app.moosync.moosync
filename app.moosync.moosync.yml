@@ -16,8 +16,11 @@ finish-args:
   - --share=network
   - --filesystem=xdg-music
   - --device=dri
-  - --own-name=org.mpris.MediaPlayer2.chromium.*
+  - --own-name=org.mpris.MediaPlayer2.Moosync
   - --talk-name=org.mpris.MediaPlayer2.Player
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.gnome.keyring
+  - --talk-name=org.kde.kwalletd5
 cleanup:
   - "/include"
   - "/lib/girepository-1.0"
@@ -78,10 +81,10 @@ modules:
         url: https://github.com/libvips/libvips/releases/download/v8.12.2/vips-8.12.2.tar.gz
         sha256: 565252992aff2c7cd10c866c7a58cd57bc536e03924bde29ae0f0cb9e074010b
         x-checker-data:
-            type: json
-            url: https://api.github.com/repos/libvips/libvips/releases/latest
-            version-query: .tag_name | sub("^v"; "")
-            url-query: ".assets[] | select(.name==\"vips-\" + $version + \".tar.gz\") | .browser_download_url"
+          type: json
+          url: https://api.github.com/repos/libvips/libvips/releases/latest
+          version-query: .tag_name | sub("^v"; "")
+          url-query: '.assets[] | select(.name=="vips-" + $version + ".tar.gz") | .browser_download_url'
 
   - name: yarn
     buildsystem: simple
@@ -112,8 +115,15 @@ modules:
         dest-filename: Moosync-4.0.0-linux-x64.tar.xz
         dest: Moosync
 
+      # - type: archive
+      #   url: file:///home/ovenoboyo/projects/moosync/Moosync/dist_electron/Moosync-4.0.0-linux-x64.pacman
+      #   sha256: 5f4d8ad7353de58a51597bc6af3901b364e732ab3d8ea713682d7239436f4f09
+      #   dest-filename: Moosync-4.0.0-linux-x64.tar.xz
+      #   dest: Moosync
+
       - type: git
         url: https://github.com/Moosync/Moosync.git
+        # branch: dev
         tag: v4.0.0
         disable-submodules: true
 
