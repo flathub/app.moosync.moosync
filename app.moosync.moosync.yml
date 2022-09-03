@@ -1,11 +1,11 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: "21.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
 base: org.electronjs.Electron2.BaseApp
-base-version: '21.08'
+base-version: "21.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -67,8 +67,8 @@ cleanup:
   - /bin/vips-*
   - /bin/vipsprofile
   - /bin/vipsthumbnail
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 modules:
   - name: libvips
     builddir: true
@@ -91,7 +91,7 @@ modules:
     build-commands:
       - cp -a * /app
     cleanup:
-      - '*'
+      - "*"
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -106,26 +106,23 @@ modules:
         ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
         PLAYWRIGHT_BROWSERS_PATH: /run/build/Moosync/flatpak-node/cache/ms-playwright
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
-        npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
-        npm_config_runtime: electron
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v4.0.0/Moosync-4.0.0-linux-x64.pacman
-        sha256: 050fff53533d69d9a3acfa352f8ea13d5e4cd234bf5d5ccd3f772ba369b792f7
+        url: https://github.com/Moosync/Moosync/releases/download/v5.0.0/Moosync-5.0.0-linux-x64.pacman
+        sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         dest-filename: Moosync-4.0.0-linux-x64.tar.xz
         dest: Moosync
-
-      # - type: archive
-      #   url: file:///home/ovenoboyo/projects/moosync/Moosync/dist_electron/Moosync-4.0.0-linux-x64.pacman
-      #   sha256: 5f4d8ad7353de58a51597bc6af3901b364e732ab3d8ea713682d7239436f4f09
-      #   dest-filename: Moosync-4.0.0-linux-x64.tar.xz
-      #   dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v4.0.0
+        tag: v5.0.0
         disable-submodules: true
+
+      - type: git
+        url: https://github.com/Moosync/moosync_package_cache.git
+        dest: .yarn/cache
+        tag: v5.0.0
 
       - generated-sources.json
 
@@ -154,12 +151,10 @@ modules:
       - find /app/Moosync/resources/ -name "*.node" -type f -delete
 
       # Build native modules
-      - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
-      - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
-      - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
-        \ },' vue.config.js"
-      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
-        yarn install --offline
+      - yarn config set enableNetwork false
+      - yarn config set enableInlineBuilds true
+      - 'sed -i -e ''/...archElectronConfig,/a electronDownload: { cache: "/run/build/Moosync/flatpak-node/electron-cache" },'' vue.config.js'
+      - npm_config_runtime=electron npm_config_nodedir="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         cd node_modules
