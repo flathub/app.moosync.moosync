@@ -1,11 +1,11 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "21.08"
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
 base: org.electronjs.Electron2.BaseApp
-base-version: "21.08"
+base-version: '21.08'
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -67,8 +67,8 @@ cleanup:
   - /bin/vips-*
   - /bin/vipsprofile
   - /bin/vipsthumbnail
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 modules:
   - name: libvips
     builddir: true
@@ -78,8 +78,8 @@ modules:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.13.0/vips-8.13.0.tar.gz
-        sha256: b7e1d50dcf571165beecd36adece6eca6701c2a9e131c675143d8b9418dbdd81
+        url: https://github.com/libvips/libvips/releases/download/v8.13.1/vips-8.13.1.tar.gz
+        sha256: ad377b7e561bb2118de9a3864fcaa60c61ba7f47e849f6044d1b339906197702
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -91,7 +91,7 @@ modules:
     build-commands:
       - cp -a * /app
     cleanup:
-      - "*"
+      - '*'
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -153,8 +153,11 @@ modules:
       # Build native modules
       - yarn config set enableNetwork false
       - yarn config set enableInlineBuilds true
-      - 'sed -i -e ''/...archElectronConfig,/a electronDownload: { cache: "/run/build/Moosync/flatpak-node/electron-cache" },'' vue.config.js'
-      - npm_config_runtime=electron npm_config_nodedir="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install
+      - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
+        \ },' vue.config.js"
+      - npm_config_runtime=electron npm_config_nodedir="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current"
+        ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+        yarn install
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         cd node_modules
