@@ -109,8 +109,8 @@ modules:
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v5.0.0/Moosync-5.0.0-linux-x64.pacman
-        sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        dest-filename: Moosync-4.0.0-linux-x64.tar.xz
+        sha256: 2962062fefec93c193369155b3f12aea7587e2fbaa62ab0d48da6920dfa5b62b
+        dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
