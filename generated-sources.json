@@ -10643,9 +10643,9 @@
         "type": "shell",
         "commands": [
             "cd flatpak-node/tmp/nan.git-1719071c1b74e569f7e6f57c589fc9e5020a3f6e; git archive --format tar -o ../../yarn-mirror/nan.git-1719071c1b74e569f7e6f57c589fc9e5020a3f6e HEAD",
+            "cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7; git archive --format tar -o ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 HEAD",
             "cd flatpak-node/tmp/MediaController.git-950e78f362b6c6eedc027b9fec10ebdbc76cfb10; git archive --format tar -o ../../yarn-mirror/MediaController.git-950e78f362b6c6eedc027b9fec10ebdbc76cfb10 HEAD",
-            "cd flatpak-node/tmp/vm2.git-62062adbd7145f734615c9bce190b739ecb86059; git archive --format tar -o ../../yarn-mirror/vm2.git-62062adbd7145f734615c9bce190b739ecb86059 HEAD",
-            "cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7; git archive --format tar -o ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 HEAD"
+            "cd flatpak-node/tmp/vm2.git-62062adbd7145f734615c9bce190b739ecb86059; git archive --format tar -o ../../yarn-mirror/vm2.git-62062adbd7145f734615c9bce190b739ecb86059 HEAD"
         ]
     }
 ]
