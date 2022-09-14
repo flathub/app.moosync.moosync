@@ -781,7 +781,7 @@ class LockfileProvider:
 
         return GitSource(original=original_url.geturl(),
                          url=new_url.geturl(),
-                         commit=original_url.fragment.replace('commit=', ''),
+                         commit=original_url.fragment,
                          from_=from_)
 
     def process_lockfile(self, lockfile: Path) -> Iterator[Package]:
@@ -1155,6 +1155,7 @@ class SpecialSourceProvider:
             name = browser['name']
             revision = int(browser['revision'])
 
+            print(name, browsers_json_url)
             if name == 'chromium':
                 if revision < 792639 and revision > 700000:
                     url_tp = 'https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/%d/%s'
@@ -1592,35 +1593,10 @@ class YarnLockfileProvider(LockfileProvider):
 
     def unquote(self, string: str) -> str:
         if string.startswith('"'):
-            print(string)
-            if string.endswith('"'):
-                return string[1:-1]
-            else:
-                return string[1:]
+            assert string.endswith('"')
+            return string[1:-1]
         else:
             return string
-
-    def getScopelessName(self, pkgname):
-        print(pkgname)
-        if pkgname[0] != '@':
-            return pkgname
-        return pkgname.split('/')[1]
-
-
-    def parseResolved(self, line, version):
-        split = line.split('@')
-        source = split[-1]
-
-        if len(split) > 2:
-            pkgname = '@'.join(split[:-1])
-        else:
-            pkgname = split[0]
-
-        base_url = 'https://registry.yarnpkg.com/'
-        if source.startswith('npm'):
-            return f"{base_url}{pkgname}/-/{self.getScopelessName(pkgname)}-{version}.tgz"
-        else:
-            return source
 
     def parse_package_section(self, lockfile: Path, section: List[str]) -> Package:
         assert section
@@ -1653,7 +1629,7 @@ class YarnLockfileProvider(LockfileProvider):
             line = line.strip()
             if line.startswith('version'):
                 version = self.unquote(line.split(' ', 1)[1])
-            elif line.startswith('resolution'):
+            elif line.startswith('resolved'):
                 resolved = self.unquote(line.split(' ', 1)[1])
             elif line.startswith('integrity'):
                 _, values_str = line.split(' ', 1)
@@ -1661,10 +1637,6 @@ class YarnLockfileProvider(LockfileProvider):
                 integrity = Integrity.parse(values[0])
 
         assert version and resolved, line
-
-        resolved = self.parseResolved(resolved, version)
-
-        print(version, resolved)
 
         source: PackageSource
         if self.is_git_version(resolved):
@@ -1677,8 +1649,6 @@ class YarnLockfileProvider(LockfileProvider):
     def process_lockfile(self, lockfile: Path) -> Iterator[Package]:
         section: List[str] = []
 
-        validPackages = ['electron', 'electron-chromedriver', 'chromedriver', 'electron-builder', 'gulp-atom-electron', 'nw-builder', 'dugite', '@shiftkey/dugite', 'vscode-ripgrep', '@vscode/ripgrep', 'playwright', 'esbuild']
-
         with open(lockfile) as fp:
             for line in map(str.rstrip, fp):
                 if not line.strip() or line.strip().startswith('#'):
@@ -1686,15 +1656,12 @@ class YarnLockfileProvider(LockfileProvider):
 
                 if not line[0].isspace():
                     if section:
-                        if any(valid in section[0] for valid in validPackages):
-                            yield self.parse_package_section(lockfile, section)
-                            section = []
-                        else:
-                            section = []
+                        yield self.parse_package_section(lockfile, section)
+                        section = []
 
                 section.append(line)
 
-        if any(valid in section[0] for valid in validPackages):
+        if section:
             yield self.parse_package_section(lockfile, section)
 
 

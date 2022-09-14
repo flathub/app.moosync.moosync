@@ -78,8 +78,8 @@ modules:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.13.0/vips-8.13.0.tar.gz
-        sha256: b7e1d50dcf571165beecd36adece6eca6701c2a9e131c675143d8b9418dbdd81
+        url: https://github.com/libvips/libvips/releases/download/v8.13.1/vips-8.13.1.tar.gz
+        sha256: ad377b7e561bb2118de9a3864fcaa60c61ba7f47e849f6044d1b339906197702
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -106,25 +106,28 @@ modules:
         ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
         PLAYWRIGHT_BROWSERS_PATH: /run/build/Moosync/flatpak-node/cache/ms-playwright
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
+        npm_config_runtime: electron
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v5.0.0/Moosync-5.0.0-linux-x64.pacman
-        sha256: 2962062fefec93c193369155b3f12aea7587e2fbaa62ab0d48da6920dfa5b62b
+        url: https://github.com/Moosync/Moosync/releases/download/v5.0.1/Moosync-5.0.1-linux-x64.pacman
+        sha256: 51b21a04a48801554a12e9125c28c72198143386b2506871dfcf47308b38b3f9
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v5.0.0
+        tag: v5.0.1
         disable-submodules: true
 
-      - type: git
-        url: https://github.com/Moosync/moosync_package_cache.git
-        dest: .yarn/cache
-        tag: v5.0.0
-
       - generated-sources.json
+
+      - type: file
+        path: electron-20.patch
+
+      - type: file
+        path: better-sqlite3.patch
 
       - type: file
         path: app.moosync.moosync.appdata.xml
@@ -151,10 +154,21 @@ modules:
       - find /app/Moosync/resources/ -name "*.node" -type f -delete
 
       # Build native modules
-      - yarn config set enableNetwork false
-      - yarn config set enableInlineBuilds true
-      - 'sed -i -e ''/...archElectronConfig,/a electronDownload: { cache: "/run/build/Moosync/flatpak-node/electron-cache" },'' vue.config.js'
-      - npm_config_runtime=electron npm_config_nodedir="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install
+      - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
+      - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
+      - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
+        \ },' vue.config.js"
+
+      # Fixes electron 20 build
+      - git apply electron-20.patch
+      - |
+        cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 
+        git apply ../../../better-sqlite3.patch
+        git add -A
+        rm -f ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7
+        git archive --format tar -o ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 $(git stash create)
+
+      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install --offline
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         cd node_modules
