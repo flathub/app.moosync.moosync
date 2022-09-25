@@ -110,15 +110,15 @@ modules:
         npm_config_runtime: electron
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v5.0.1/Moosync-5.0.1-linux-x64.pacman
-        sha256: 51b21a04a48801554a12e9125c28c72198143386b2506871dfcf47308b38b3f9
+        url: https://github.com/Moosync/Moosync/releases/download/v5.1.0/Moosync-5.1.0-linux-x64.pacman
+        sha256: 084234e13e0730a1cc4fd5dfab0e128acf399d295fb0d5dce0033797f964c76f
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v5.0.1
+        tag: v5.1.0
         disable-submodules: true
 
       - generated-sources.json
