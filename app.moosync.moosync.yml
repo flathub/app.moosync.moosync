@@ -162,7 +162,7 @@ modules:
       # Fixes electron 20 build
       - git apply electron-20.patch
       - |
-        cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 
+        cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7
         git apply ../../../better-sqlite3.patch
         git add -A
         rm -f ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7
