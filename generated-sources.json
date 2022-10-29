@@ -3069,13 +3069,6 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-7.6.2.tgz#47cd8cad5b9573cace535f950ac321166bc31384",
-        "sha512": "4b9cc85351e29e4d801f8c4fb0dd16e374f5fc02798eb3e1ececb4ee872e5bf00a618634d865b3cfd347d276d2327fe0c3a7c36798d9d50b07b7505703027a2e",
-        "dest-filename": "better-sqlite3-7.6.2.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
         "url": "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328",
         "sha512": "bf22f63b2989c666ab3bc83132bd2684286c3bd406c21ca77eebb8f8c1d3016e9ccdfabd86e98207bacaa548c377d6148833d4e26ce9caea454af382940c1b99",
         "dest-filename": "big.js-5.2.2.tgz",
@@ -10838,6 +10831,12 @@
     },
     {
         "type": "git",
+        "url": "https://github.com/neoxpert/better-sqlite3.git",
+        "commit": "7999f41a4f55b65a43b21a16ab230c7dfa4dd0f0",
+        "dest": "flatpak-node/tmp/better-sqlite3.git-7999f41a4f55b65a43b21a16ab230c7dfa4dd0f0"
+    },
+    {
+        "type": "git",
         "url": "https://github.com/patriksimek/vm2.git",
         "commit": "62062adbd7145f734615c9bce190b739ecb86059",
         "dest": "flatpak-node/tmp/vm2.git-62062adbd7145f734615c9bce190b739ecb86059"
@@ -10914,8 +10913,9 @@
     {
         "type": "shell",
         "commands": [
+            "cd flatpak-node/tmp/MediaController.git-5c24cc7cd38a62b3e74ba66822a9137d193d4899; git archive --format tar -o ../../yarn-mirror/MediaController.git-5c24cc7cd38a62b3e74ba66822a9137d193d4899 HEAD",
             "cd flatpak-node/tmp/vm2.git-62062adbd7145f734615c9bce190b739ecb86059; git archive --format tar -o ../../yarn-mirror/vm2.git-62062adbd7145f734615c9bce190b739ecb86059 HEAD",
-            "cd flatpak-node/tmp/MediaController.git-5c24cc7cd38a62b3e74ba66822a9137d193d4899; git archive --format tar -o ../../yarn-mirror/MediaController.git-5c24cc7cd38a62b3e74ba66822a9137d193d4899 HEAD"
+            "cd flatpak-node/tmp/better-sqlite3.git-7999f41a4f55b65a43b21a16ab230c7dfa4dd0f0; git archive --format tar -o ../../yarn-mirror/better-sqlite3.git-7999f41a4f55b65a43b21a16ab230c7dfa4dd0f0 HEAD"
         ]
     }
 ]
