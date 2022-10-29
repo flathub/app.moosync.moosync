@@ -127,9 +127,6 @@ modules:
         path: electron-20.patch
 
       - type: file
-        path: better-sqlite3.patch
-
-      - type: file
         path: app.moosync.moosync.appdata.xml
 
       - type: script
