@@ -151,7 +151,7 @@ modules:
       - |
         . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
         yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
-      - cp -a dist_electron/linux-unpacked /app/Moosync
+      - cp -a dist_electron/linux*unpacked /app/Moosync
       - rm -f /app/Moosync/resources/app.asar
       - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
 
