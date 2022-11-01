@@ -1,11 +1,11 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "21.08"
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
 base: org.electronjs.Electron2.BaseApp
-base-version: "21.08"
+base-version: '21.08'
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -30,8 +30,8 @@ modules:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.13.2/vips-8.13.2.tar.gz
-        sha256: 41db5ed40a22ad50f8f37782e1ae5bac76f9f2e0b5731728f97c55f245f1da2a
+        url: https://github.com/libvips/libvips/releases/download/v8.13.3/vips-8.13.3.tar.gz
+        sha256: 4eff5cdc8dbe1a05a926290a99014e20ba386f5dcca38d9774bef61413435d4c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -84,15 +84,15 @@ modules:
       - /bin/vips-*
       - /bin/vipsprofile
       - /bin/vipsthumbnail
-      - "*.la"
-      - "*.a"
+      - '*.la'
+      - '*.a'
 
   - name: yarn
     buildsystem: simple
     build-commands:
       - cp -a * /app
     cleanup:
-      - "*"
+      - '*'
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
