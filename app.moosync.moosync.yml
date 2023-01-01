@@ -1,11 +1,11 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: "21.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
 base: org.electronjs.Electron2.BaseApp
-base-version: '21.08'
+base-version: "21.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -67,8 +67,8 @@ cleanup:
   - /bin/vips-*
   - /bin/vipsprofile
   - /bin/vipsthumbnail
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 modules:
   - name: libvips
     builddir: true
@@ -91,7 +91,7 @@ modules:
     build-commands:
       - cp -a * /app
     cleanup:
-      - '*'
+      - "*"
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -110,15 +110,15 @@ modules:
         npm_config_runtime: electron
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v6.0.0/Moosync-6.0.0-linux-x64.pacman
-        sha256: 59f11f9e78486423dae41a54f553ef6658360a5b9df298b35b65b8093f065fb0
+        url: https://github.com/Moosync/Moosync/releases/download/v7.0.0/Moosync-7.0.0-linux-x64.pacman
+        sha256: 0caeff0625c6a3a911ee471fc00fd7cc82998312652a223116cbd85d27001849
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v6.0.0
+        tag: v7.0.0
         disable-submodules: true
 
       - generated-sources.json
@@ -158,15 +158,6 @@ modules:
       - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
-
-      # Fixes electron 20 build
-      - git apply electron-20.patch
-      - |
-        cd flatpak-node/tmp/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7
-        git apply ../../../better-sqlite3.patch
-        git add -A
-        rm -f ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7
-        git archive --format tar -o ../../yarn-mirror/better-sqlite3.git-a0227e3fd4567ebc9683c0e21c0ac4719c51d2f7 $(git stash create)
 
       - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
