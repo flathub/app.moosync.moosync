@@ -1,11 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: "21.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
+  - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: '21.08'
+base-version: "21.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -84,15 +85,15 @@ modules:
       - /bin/vips-*
       - /bin/vipsprofile
       - /bin/vipsthumbnail
-      - '*.la'
-      - '*.a'
+      - "*.la"
+      - "*.a"
 
   - name: yarn
     buildsystem: simple
     build-commands:
       - cp -a * /app
     cleanup:
-      - '*'
+      - "*"
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -101,7 +102,7 @@ modules:
   - name: Moosync
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin
+      append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
       env:
         ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
         ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
@@ -109,22 +110,22 @@ modules:
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
+        CARGO_HOME: /run/build/Moosync/cargo
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v6.0.0/Moosync-6.0.0-linux-x64.pacman
-        sha256: 59f11f9e78486423dae41a54f553ef6658360a5b9df298b35b65b8093f065fb0
+        url: https://github.com/Moosync/Moosync/releases/download/v7.0.0/Moosync-7.0.0-linux-x64.pacman
+        sha256: 0caeff0625c6a3a911ee471fc00fd7cc82998312652a223116cbd85d27001849
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
-        tag: v6.0.0
+        # branch: dev
+        tag: v7.0.0
         disable-submodules: true
 
       - generated-sources.json
-
-      - type: file
-        path: electron-20.patch
+      - generated-sources-cargo.json
 
       - type: file
         path: app.moosync.moosync.appdata.xml
@@ -143,11 +144,17 @@ modules:
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
 
-      # Fixes electron 20 build
-      - git apply electron-20.patch
+      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+        yarn install --offline --ignore-scripts
+
+      - |
+        cd node_modules/librespot-node/native
+        CARGO_HOME=/run/build/Moosync/cargo cargo --offline fetch --manifest-path Cargo.toml --verbose
 
       - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
+
+      - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
         yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
