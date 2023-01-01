@@ -4,6 +4,7 @@ runtime-version: "21.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
+  - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
 base-version: "21.08"
 command: moosync
@@ -101,7 +102,7 @@ modules:
   - name: Moosync
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin
+      append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
       env:
         ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
         ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
@@ -109,6 +110,7 @@ modules:
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
+        CARGO_HOME: /run/build/Moosync/cargo
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v7.0.0/Moosync-7.0.0-linux-x64.pacman
@@ -123,6 +125,7 @@ modules:
         disable-submodules: true
 
       - generated-sources.json
+      - generated-sources-cargo.json
 
       - type: file
         path: app.moosync.moosync.appdata.xml
@@ -142,7 +145,15 @@ modules:
         \ },' vue.config.js"
 
       - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+        yarn install --offline --ignore-scripts
+
+      - |
+        cd node_modules/librespot-node/native
+        CARGO_HOME=/run/build/Moosync/cargo cargo --offline fetch --manifest-path Cargo.toml --verbose
+
+      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
+
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh

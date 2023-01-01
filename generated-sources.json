@@ -10724,9 +10724,9 @@
     {
         "type": "shell",
         "commands": [
-            "cd flatpak-node/tmp/vm2.git-d4bcc2189e2e05efcd82e09172ba41c708950012; git archive --format tar -o ../../yarn-mirror/vm2.git-d4bcc2189e2e05efcd82e09172ba41c708950012 HEAD",
             "cd flatpak-node/tmp/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283; git archive --format tar -o ../../yarn-mirror/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283 HEAD",
-            "cd flatpak-node/tmp/librespot-node.git-e8f4ae4d1eeabcb578ea6e64e41858f952dff44c; git archive --format tar -o ../../yarn-mirror/librespot-node.git-e8f4ae4d1eeabcb578ea6e64e41858f952dff44c HEAD"
+            "cd flatpak-node/tmp/librespot-node.git-e8f4ae4d1eeabcb578ea6e64e41858f952dff44c; git archive --format tar -o ../../yarn-mirror/librespot-node.git-e8f4ae4d1eeabcb578ea6e64e41858f952dff44c HEAD",
+            "cd flatpak-node/tmp/vm2.git-d4bcc2189e2e05efcd82e09172ba41c708950012; git archive --format tar -o ../../yarn-mirror/vm2.git-d4bcc2189e2e05efcd82e09172ba41c708950012 HEAD"
         ]
     }
 ]
