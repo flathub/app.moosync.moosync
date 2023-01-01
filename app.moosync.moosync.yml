@@ -21,54 +21,6 @@ finish-args:
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.gnome.keyring
   - --talk-name=org.kde.kwalletd5
-cleanup:
-  - /include
-  - /lib/girepository-1.0
-  - /lib/pkgconfig
-  - /lib/cmake
-  - /lib/openjpeg-*
-  - /lib/libhdf5.settings
-  - /lib/debug
-  - /man
-  - /share/aclocal
-  - /share/doc
-  - /share/gir-1.0
-  - /share/gtk-doc
-  - /share/man
-  - /share/pkgconfig
-  - /share/aclocal*
-  - /share/autoconf*
-  - /share/automake*
-  - /share/info
-  - /share/thumbnailers
-  - /share/USING_HDF5_CMake.txt
-  - /share/COPYING
-  - /share/RELEASE.txt
-  - /share/cmake
-  - /bin/a*
-  - /bin/b*
-  - /bin/c*
-  - /bin/d*
-  - /bin/e*
-  - /bin/f*
-  - /bin/g*
-  - /bin/h*
-  - /bin/i*
-  - /bin/l*
-  - /bin/o*
-  - /bin/p*
-  - /bin/r*
-  - /bin/s*
-  - /bin/t*
-  - /bin/x*
-  - /bin/vips
-  - /bin/vipsheader
-  - /bin/vipsedit
-  - /bin/vips-*
-  - /bin/vipsprofile
-  - /bin/vipsthumbnail
-  - "*.la"
-  - "*.a"
 modules:
   - name: libvips
     builddir: true
@@ -85,6 +37,55 @@ modules:
           url: https://api.github.com/repos/libvips/libvips/releases/latest
           version-query: .tag_name | sub("^v"; "")
           url-query: .assets[] | select(.name=="vips-" + $version + ".tar.gz") | .browser_download_url
+
+    cleanup:
+      - /include
+      - /lib/girepository-1.0
+      - /lib/pkgconfig
+      - /lib/cmake
+      - /lib/openjpeg-*
+      - /lib/libhdf5.settings
+      - /lib/debug
+      - /man
+      - /share/aclocal
+      - /share/doc
+      - /share/gir-1.0
+      - /share/gtk-doc
+      - /share/man
+      - /share/pkgconfig
+      - /share/aclocal*
+      - /share/autoconf*
+      - /share/automake*
+      - /share/info
+      - /share/thumbnailers
+      - /share/USING_HDF5_CMake.txt
+      - /share/COPYING
+      - /share/RELEASE.txt
+      - /share/cmake
+      - /bin/a*
+      - /bin/b*
+      - /bin/c*
+      - /bin/d*
+      - /bin/e*
+      - /bin/f*
+      - /bin/g*
+      - /bin/h*
+      - /bin/i*
+      - /bin/l*
+      - /bin/o*
+      - /bin/p*
+      - /bin/r*
+      - /bin/s*
+      - /bin/t*
+      - /bin/x*
+      - /bin/vips
+      - /bin/vipsheader
+      - /bin/vipsedit
+      - /bin/vips-*
+      - /bin/vipsprofile
+      - /bin/vipsthumbnail
+      - "*.la"
+      - "*.a"
 
   - name: yarn
     buildsystem: simple
@@ -127,9 +128,6 @@ modules:
         path: electron-20.patch
 
       - type: file
-        path: better-sqlite3.patch
-
-      - type: file
         path: app.moosync.moosync.appdata.xml
 
       - type: script
@@ -140,19 +138,6 @@ modules:
             "$@"
 
     build-commands:
-      # Copy prebuilt JS files
-      - mv Moosync/Moosync /app/Moosync
-      - install -Dm755 moosync.sh /app/bin/moosync
-      - chmod +x /app/Moosync/moosync
-      - install -d /app/share/applications
-      - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
-      - desktop-file-edit --set-key=Exec --set-value="/app/bin/moosync %U" /app/share/applications/${FLATPAK_ID}.desktop
-      - cp -r Moosync/share/icons /app/share/icons
-      - install -D app.moosync.moosync.appdata.xml --target-directory=/app/share/metainfo/
-
-      # Remove all prebuilt native modules
-      - find /app/Moosync/resources/ -name "*.node" -type f -delete
-
       # Build native modules
       - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
       - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
@@ -163,5 +148,15 @@ modules:
         yarn install --offline
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
-        cd node_modules
-        find . -name '*.node' -exec cp --parents \{\} /"/app/Moosync/resources/app.asar.unpacked/node_modules" \;
+        . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
+        yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
+      - cp -a dist_electron/linux*unpacked /app/Moosync
+      - rm -f /app/Moosync/resources/app.asar
+      - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
+
+      - install -Dm755 moosync.sh /app/bin/moosync
+      - install -d /app/share/applications
+      - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - desktop-file-edit --set-key=Exec --set-value="/app/bin/moosync %U" /app/share/applications/${FLATPAK_ID}.desktop
+      - cp -r Moosync/share/icons /app/share/icons
+      - install -D app.moosync.moosync.appdata.xml --target-directory=/app/share/metainfo/
