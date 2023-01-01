@@ -125,9 +125,6 @@ modules:
       - generated-sources.json
 
       - type: file
-        path: electron-20.patch
-
-      - type: file
         path: app.moosync.moosync.appdata.xml
 
       - type: script
