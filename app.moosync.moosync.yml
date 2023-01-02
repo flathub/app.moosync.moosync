@@ -144,21 +144,14 @@ modules:
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
 
-      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
-        yarn install --offline --ignore-scripts
-
-      - |
-        cd node_modules/librespot-node/native
-        CARGO_HOME=/run/build/Moosync/cargo cargo --offline fetch --manifest-path Cargo.toml --verbose
-
-      - npm_config_runtime=electron ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE=1 ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
 
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
       - |
         . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
         yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
-      - cp -a dist_electron/linux*unpacked /app/Moosync
+      - cp -a dist_electron/linux*unpacked/* /app/Moosync
       - rm -f /app/Moosync/resources/app.asar
       - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
 
