@@ -22,6 +22,10 @@ finish-args:
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.gnome.keyring
   - --talk-name=org.kde.kwalletd5
+
+  # KDE Plasma tray icon
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.kde.*
 modules:
   - name: libvips
     builddir: true
