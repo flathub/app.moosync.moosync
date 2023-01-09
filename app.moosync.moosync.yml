@@ -114,7 +114,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v7.1.0/Moosync-7.1.0-linux-x64.pacman
-        sha256: 943b5abc7c2bb70ba8a536802c55dd557d9ccbfaf54dfd3681076ac5550ed76b
+        sha256: 0f0a11ca8512bd285c993bee45b611f725df37f0f3dca7acfddc16145abf80ad
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
