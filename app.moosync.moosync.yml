@@ -113,15 +113,15 @@ modules:
         CARGO_HOME: /run/build/Moosync/cargo
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v7.0.0/Moosync-7.0.0-linux-x64.pacman
-        sha256: 0caeff0625c6a3a911ee471fc00fd7cc82998312652a223116cbd85d27001849
+        url: https://github.com/Moosync/Moosync/releases/download/v7.1.0/Moosync-7.1.0-linux-x64.pacman
+        sha256: 0f0a11ca8512bd285c993bee45b611f725df37f0f3dca7acfddc16145abf80ad
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v7.0.0
+        tag: v7.1.0
         disable-submodules: true
 
       - generated-sources.json
