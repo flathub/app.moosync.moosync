@@ -29,7 +29,7 @@ finish-args:
 modules:
   - name: libvips
     builddir: true
-    buildsystem: autotools
+    buildsystem: meson
     build-options:
       env:
         V: 0
