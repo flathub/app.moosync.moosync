@@ -35,8 +35,8 @@ modules:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.13.3/vips-8.13.3.tar.gz
-        sha256: 4eff5cdc8dbe1a05a926290a99014e20ba386f5dcca38d9774bef61413435d4c
+        url: https://github.com/libvips/libvips/releases/download/v8.14.2/vips-8.14.2.tar.xz
+        sha256: 27dad021f0835a5ab14e541d02abd41e4c3bd012d2196438df5a9e754984f7ce
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
