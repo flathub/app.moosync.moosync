@@ -6,10 +6,12 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <url type="homepage">https://moosync.app</url>
-  <icon type="remote" height="512" width="512">https://raw.githubusercontent.com/Moosync/Moosync/main/build/icons/icon.png</icon>
+  <icon type="remote" height="512" width="512">
+    https://raw.githubusercontent.com/Moosync/Moosync/main/build/icons/icon.png</icon>
   <project_group>Moosync</project_group>
   <description>
-    <p>Moosync is an Electron based simple music player with a primary goal to provide a clean and easy interface.</p>
+    <p>Moosync is an Electron based simple music player with a primary goal to provide a clean and
+      easy interface.</p>
     <p>Through Moosync you can easily listen songs from your desktop or through Youtube and Spotify.</p>
     <p>Some of its features include:</p>
     <ul>
@@ -30,7 +32,8 @@
   <screenshots>
     <screenshot type="default">
       <caption>Music info and Queue</caption>
-      <image>https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_musicinfo_view.png?raw=true</image>
+      <image>
+        https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_musicinfo_view.png?raw=true</image>
     </screenshot>
     <screenshot>
       <caption>Song view</caption>
@@ -52,6 +55,7 @@
     <category>Network</category>
   </categories>
   <releases>
+    <release version="8.0.0" date="2023-04-09" />
     <release version="7.1.0" date="2023-01-08" />
     <release version="7.0.0" date="2023-01-01" />
     <release version="5.1.0" date="2022-09-26" />

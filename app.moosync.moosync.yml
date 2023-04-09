@@ -22,22 +22,26 @@ finish-args:
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.gnome.keyring
   - --talk-name=org.kde.kwalletd5
+  - --talk-name=com.canonical.AppMenu.Registrar
+  - --talk-name=com.canonical.dbusmenu
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
 modules:
   - name: libvips
     builddir: true
-    buildsystem: autotools
+    buildsystem: meson
     build-options:
       env:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.13.3/vips-8.13.3.tar.gz
-        sha256: 4eff5cdc8dbe1a05a926290a99014e20ba386f5dcca38d9774bef61413435d4c
+        url: https://github.com/libvips/libvips/releases/download/v8.14.2/vips-8.14.2.tar.xz
+        sha256: 27dad021f0835a5ab14e541d02abd41e4c3bd012d2196438df5a9e754984f7ce
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="vips-" + $version + ".tar.gz") | .browser_download_url
+          url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz") | .browser_download_url
 
     cleanup:
       - /include
@@ -113,15 +117,15 @@ modules:
         CARGO_HOME: /run/build/Moosync/cargo
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v7.1.0/Moosync-7.1.0-linux-x64.pacman
-        sha256: 0f0a11ca8512bd285c993bee45b611f725df37f0f3dca7acfddc16145abf80ad
+        url: https://github.com/Moosync/Moosync/releases/download/v8.0.0/Moosync-8.0.0-linux-x64.pacman
+        sha256: 8d4e38881f22bde242bd7d4651a105c8c360931d91306be21d9602ffbf634684
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v7.1.0
+        tag: v8.0.0
         disable-submodules: true
 
       - generated-sources.json
