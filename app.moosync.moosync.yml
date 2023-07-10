@@ -130,6 +130,7 @@ modules:
 
       - generated-sources.json
       - generated-sources-cargo.json
+      - generated-sources-cargo-scanner.json
 
       - type: file
         path: app.moosync.moosync.appdata.xml
