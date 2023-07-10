@@ -115,6 +115,7 @@ modules:
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
         CARGO_HOME: /run/build/Moosync/cargo
+        CARGO_NET_OFFLINE: "true"
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v9.0.0/Moosync-9.0.0-linux-x64.pacman
@@ -149,7 +150,7 @@ modules:
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
 
-      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE=true ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
 
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
