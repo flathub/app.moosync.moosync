@@ -136,6 +136,9 @@ modules:
       - type: file
         path: app.moosync.moosync.appdata.xml
 
+      - type: file
+        path: patch-cargo.sh
+
       - type: script
         dest-filename: moosync.sh
         commands:
@@ -150,7 +153,9 @@ modules:
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
 
-      - . patch-cargo.sh
+      - ls
+
+      - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
 
       - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
