@@ -1,12 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "21.08"
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
   - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: "21.08"
+base-version: "22.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -115,6 +115,7 @@ modules:
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
         CARGO_HOME: /run/build/Moosync/cargo
+        CARGO_NET_OFFLINE: "true"
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v9.0.1/Moosync-9.0.1-linux-x64.pacman
@@ -130,9 +131,13 @@ modules:
 
       - generated-sources.json
       - generated-sources-cargo.json
+      - generated-sources-cargo-scanner.json
 
       - type: file
         path: app.moosync.moosync.appdata.xml
+
+      - type: file
+        path: patch-cargo.sh
 
       - type: script
         dest-filename: moosync.sh
@@ -148,7 +153,11 @@ modules:
       - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
         \ },' vue.config.js"
 
-      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE=1 ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+      - ls
+
+      - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
+
+      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
 
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
