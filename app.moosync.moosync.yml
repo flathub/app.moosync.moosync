@@ -1,12 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
   - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: "22.08"
+base-version: '22.08'
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -35,8 +35,8 @@ modules:
         V: 0
     sources:
       - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.14.2/vips-8.14.2.tar.xz
-        sha256: 27dad021f0835a5ab14e541d02abd41e4c3bd012d2196438df5a9e754984f7ce
+        url: https://github.com/libvips/libvips/releases/download/v8.14.3/vips-8.14.3.tar.xz
+        sha256: f884d61a6b54c99cdae855001c8b9523e13b4982be7e76cac03faccb91be105c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libvips/libvips/releases/latest
@@ -89,15 +89,15 @@ modules:
       - /bin/vips-*
       - /bin/vipsprofile
       - /bin/vipsthumbnail
-      - "*.la"
-      - "*.a"
+      - '*.la'
+      - '*.a'
 
   - name: yarn
     buildsystem: simple
     build-commands:
       - cp -a * /app
     cleanup:
-      - "*"
+      - '*'
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -115,7 +115,7 @@ modules:
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
         CARGO_HOME: /run/build/Moosync/cargo
-        CARGO_NET_OFFLINE: "true"
+        CARGO_NET_OFFLINE: 'true'
     sources:
       - type: archive
         url: https://github.com/Moosync/Moosync/releases/download/v10.0.0/Moosync-10.0.0-linux-x64.pacman
@@ -157,7 +157,8 @@ modules:
 
       - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
 
-      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
+      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true"
+        ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
         yarn install --offline
 
       - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
