@@ -1,12 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node16
   - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: '22.08'
+base-version: "22.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -27,77 +27,12 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
 modules:
-  - name: libvips
-    builddir: true
-    buildsystem: meson
-    build-options:
-      env:
-        V: 0
-    sources:
-      - type: archive
-        url: https://github.com/libvips/libvips/releases/download/v8.14.3/vips-8.14.3.tar.xz
-        sha256: f884d61a6b54c99cdae855001c8b9523e13b4982be7e76cac03faccb91be105c
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/libvips/libvips/releases/latest
-          version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="vips-" + $version + ".tar.xz") | .browser_download_url
-
-    cleanup:
-      - /include
-      - /lib/girepository-1.0
-      - /lib/pkgconfig
-      - /lib/cmake
-      - /lib/openjpeg-*
-      - /lib/libhdf5.settings
-      - /lib/debug
-      - /man
-      - /share/aclocal
-      - /share/doc
-      - /share/gir-1.0
-      - /share/gtk-doc
-      - /share/man
-      - /share/pkgconfig
-      - /share/aclocal*
-      - /share/autoconf*
-      - /share/automake*
-      - /share/info
-      - /share/thumbnailers
-      - /share/USING_HDF5_CMake.txt
-      - /share/COPYING
-      - /share/RELEASE.txt
-      - /share/cmake
-      - /bin/a*
-      - /bin/b*
-      - /bin/c*
-      - /bin/d*
-      - /bin/e*
-      - /bin/f*
-      - /bin/g*
-      - /bin/h*
-      - /bin/i*
-      - /bin/l*
-      - /bin/o*
-      - /bin/p*
-      - /bin/r*
-      - /bin/s*
-      - /bin/t*
-      - /bin/x*
-      - /bin/vips
-      - /bin/vipsheader
-      - /bin/vipsedit
-      - /bin/vips-*
-      - /bin/vipsprofile
-      - /bin/vipsthumbnail
-      - '*.la'
-      - '*.a'
-
   - name: yarn
     buildsystem: simple
     build-commands:
       - cp -a * /app
     cleanup:
-      - '*'
+      - "*"
     sources:
       - type: archive
         url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
@@ -115,18 +50,18 @@ modules:
         npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
         npm_config_runtime: electron
         CARGO_HOME: /run/build/Moosync/cargo
-        CARGO_NET_OFFLINE: 'true'
+        CARGO_NET_OFFLINE: "true"
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v10.0.0/Moosync-10.0.0-linux-x64.pacman
-        sha256: bc9c5312dbba3c53602c435c502fbb540998a9120b6b636f2e6be34c369268a6
+        url: https://github.com/Moosync/Moosync/releases/download/v10.1.0/Moosync-10.1.0-linux-x64.pacman
+        sha256: bab4a6ae5da5dec8ffcc7d5f8389bb9d81084e9c3d4574d3da6ab5e77b1bf1c1
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v10.0.0
+        tag: v10.1.0
         disable-submodules: true
 
       - generated-sources.json
