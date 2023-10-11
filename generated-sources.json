@@ -1,5 +1,12 @@
 [
     {
+        "type": "archive",
+        "url": "https://www.electronjs.org/headers/v25.5.0/node-v25.5.0-headers.tar.gz",
+        "strip-components": 1,
+        "sha256": "447d60e74713e3cfec8c9baf508e5596154af561fed4f4d1cfeaf7c9fb96637f",
+        "dest": "flatpak-node/node-gyp/electron-current"
+    },
+    {
         "type": "file",
         "url": "https://github.com/electron/electron/releases/download/v25.5.0/SHASUMS256.txt",
         "sha256": "03f28f6247c9625ff16488dace249369857de0a19f77dd15736014f9edcbfa04",
@@ -11947,6 +11954,12 @@
         "dest": "flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f"
     },
     {
+        "type": "inline",
+        "contents": "9",
+        "dest-filename": "installVersion",
+        "dest": "flatpak-node/node-gyp/electron-current"
+    },
+    {
         "type": "script",
         "commands": [
             "case \"$FLATPAK_ARCH\" in",
@@ -11970,10 +11983,10 @@
     {
         "type": "shell",
         "commands": [
-            "cd flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f; git archive --format tar -o ../../yarn-mirror/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f HEAD",
-            "cd flatpak-node/tmp/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283; git archive --format tar -o ../../yarn-mirror/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283 HEAD",
             "cd flatpak-node/tmp/file-scanner.git-234921e0bfcba5a20a1cc23a5ee5a8302ec520a9; git archive --format tar -o ../../yarn-mirror/file-scanner.git-234921e0bfcba5a20a1cc23a5ee5a8302ec520a9 HEAD",
-            "cd flatpak-node/tmp/librespot-node.git-49c9ac17c7f0122fc55a7e6c17feb16bfaeba91e; git archive --format tar -o ../../yarn-mirror/librespot-node.git-49c9ac17c7f0122fc55a7e6c17feb16bfaeba91e HEAD"
+            "cd flatpak-node/tmp/librespot-node.git-49c9ac17c7f0122fc55a7e6c17feb16bfaeba91e; git archive --format tar -o ../../yarn-mirror/librespot-node.git-49c9ac17c7f0122fc55a7e6c17feb16bfaeba91e HEAD",
+            "cd flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f; git archive --format tar -o ../../yarn-mirror/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f HEAD",
+            "cd flatpak-node/tmp/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283; git archive --format tar -o ../../yarn-mirror/MediaController.git-f2fb9e695009ad3e6cc0672fe8bc00d5eaca9283 HEAD"
         ]
     }
 ]
