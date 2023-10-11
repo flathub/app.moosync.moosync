@@ -61,7 +61,7 @@ modules:
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v10.1.0
+        tag: v10.1.2
         disable-submodules: true
 
       - generated-sources.json
