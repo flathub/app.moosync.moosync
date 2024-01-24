@@ -3,110 +3,106 @@ runtime: org.freedesktop.Platform
 runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node16
-  - org.freedesktop.Sdk.Extension.rust-stable
+- org.freedesktop.Sdk.Extension.node18
+- org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
 base-version: "22.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
 finish-args:
-  - --share=ipc
-  - --socket=x11
-  - --socket=pulseaudio
-  - --share=network
-  - --filesystem=xdg-music
-  - --device=dri
-  - --own-name=org.mpris.MediaPlayer2.Moosync
-  - --talk-name=org.mpris.MediaPlayer2.Player
-  - --talk-name=org.freedesktop.secrets
-  - --talk-name=org.gnome.keyring
-  - --talk-name=org.kde.kwalletd5
-  - --talk-name=com.canonical.AppMenu.Registrar
-  - --talk-name=com.canonical.dbusmenu
-  - --talk-name=org.freedesktop.Notifications
-  - --talk-name=org.kde.StatusNotifierWatcher
+- --share=ipc
+- --socket=x11
+- --socket=pulseaudio
+- --share=network
+- --filesystem=xdg-music
+- --device=dri
+- --own-name=org.mpris.MediaPlayer2.Moosync
+- --talk-name=org.mpris.MediaPlayer2.Player
+- --talk-name=org.freedesktop.secrets
+- --talk-name=org.gnome.keyring
+- --talk-name=org.kde.kwalletd5
+- --talk-name=com.canonical.AppMenu.Registrar
+- --talk-name=com.canonical.dbusmenu
+- --talk-name=org.freedesktop.Notifications
+- --talk-name=org.kde.StatusNotifierWatcher
 modules:
-  - name: yarn
-    buildsystem: simple
-    build-commands:
-      - cp -a * /app
-    cleanup:
-      - "*"
-    sources:
-      - type: archive
-        url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
-        sha256: 732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e
+- name: yarn
+  buildsystem: simple
+  build-commands:
+  - cp -a * /app
+  cleanup:
+  - "*"
+  sources:
+  - type: archive
+    url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
+    sha256: 732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e
 
-  - name: Moosync
-    buildsystem: simple
-    build-options:
-      append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
-      env:
-        ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
-        ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
-        PLAYWRIGHT_BROWSERS_PATH: /run/build/Moosync/flatpak-node/cache/ms-playwright
-        ELECTRON_SKIP_BINARY_DOWNLOAD: 1
-        npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
-        npm_config_runtime: electron
-        CARGO_HOME: /run/build/Moosync/cargo
-        CARGO_NET_OFFLINE: "true"
-    sources:
-      - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v10.3.0/Moosync-10.3.0-linux-x64.pacman
-        sha256: 032fdd5fba3aba10fa9ec0ae0893186680dada027d9a0d6896160a0f7462e92e
-        dest-filename: Moosync-linux-x64.tar.xz
-        dest: Moosync
+- name: Moosync
+  buildsystem: simple
+  build-options:
+    append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
+    env:
+      ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
+      ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
+      PLAYWRIGHT_BROWSERS_PATH: /run/build/Moosync/flatpak-node/cache/ms-playwright
+      ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+      npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
+      npm_config_runtime: electron
+      CARGO_HOME: /run/build/Moosync/cargo
+      CARGO_NET_OFFLINE: "true"
+  sources:
+  - type: archive
+    url: https://github.com/Moosync/Moosync/releases/download/v10.3.0/Moosync-10.3.0-linux-x64.pacman
+    sha256: 032fdd5fba3aba10fa9ec0ae0893186680dada027d9a0d6896160a0f7462e92e
+    dest-filename: Moosync-linux-x64.tar.xz
+    dest: Moosync
 
-      - type: git
-        url: https://github.com/Moosync/Moosync.git
-        # branch: dev
-        tag: v10.3.0
-        disable-submodules: true
+  - type: git
+    url: https://github.com/Moosync/Moosync.git
+    # branch: dev
+    tag: v10.3.0
+    disable-submodules: true
 
-      - generated-sources.json
-      - generated-sources-cargo.json
-      - generated-sources-cargo-scanner.json
+  - generated-sources.json
+  - generated-sources-cargo.json
+  - generated-sources-cargo-scanner.json
 
-      - type: file
-        path: app.moosync.moosync.appdata.xml
+  - type: file
+    path: app.moosync.moosync.appdata.xml
 
-      - type: file
-        path: patch-cargo.sh
+  - type: file
+    path: patch-cargo.sh
 
-      - type: script
-        dest-filename: moosync.sh
-        commands:
-          # TODO: Find a way to get extension-host and relaunch working with zypak
-          - TMPDIR=$XDG_RUNTIME_DIR/$APP_ID/ && /app/Moosync/moosync --no-sandbox
-            "$@"
+  - type: script
+    dest-filename: moosync.sh
+    commands:
+    # TODO: Find a way to get extension-host and relaunch working with zypak
+    - TMPDIR=$XDG_RUNTIME_DIR/$APP_ID/ && /app/Moosync/moosync --no-sandbox "$@"
 
-    build-commands:
-      # Build native modules
-      - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
-      - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
-      - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\"\
-        \ },' vue.config.js"
+  build-commands:
+  # Build native modules
+  - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
+  - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
+  - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\" },' vue.config.js"
 
-      - ls
+  - ls
 
-      - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
+  - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
 
-      - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true"
-        ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright"
-        yarn install --offline
+  - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install --offline
 
-      - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
-      - |
-        . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
-        yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
-      - cp -a dist_electron/linux*unpacked/* /app/Moosync
-      - rm -f /app/Moosync/resources/app.asar
-      - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
+  - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
+  - |
+    . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
+    yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
+  - cp -a dist_electron/linux*unpacked/* /app/Moosync
+  - rm -f /app/Moosync/resources/app.asar
+  - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
 
-      - install -Dm755 moosync.sh /app/bin/moosync
-      - install -d /app/share/applications
-      - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
-      - desktop-file-edit --set-key=Exec --set-value="/app/bin/moosync %U" /app/share/applications/${FLATPAK_ID}.desktop
-      - cp -r Moosync/share/icons /app/share/icons
-      - install -D app.moosync.moosync.appdata.xml --target-directory=/app/share/metainfo/
+  - install -Dm755 moosync.sh /app/bin/moosync
+  - install -d /app/share/applications
+  - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
+  - desktop-file-edit --set-key=Exec --set-value="/app/bin/moosync %U" /app/share/applications/${FLATPAK_ID}.desktop
+  - cp -r Moosync/share/icons /app/share/icons
+  - install -D app.moosync.moosync.appdata.xml --target-directory=/app/share/metainfo/
