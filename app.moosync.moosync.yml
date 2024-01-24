@@ -53,15 +53,15 @@ modules:
         CARGO_NET_OFFLINE: "true"
     sources:
       - type: archive
-        url: https://github.com/Moosync/Moosync/releases/download/v10.2.0/Moosync-10.2.0-linux-x64.pacman
-        sha256: b44cbc51dcf412f07dab375812ec4fbf1ed5073bb3af4ecfcc2077753c7b86fd
+        url: https://github.com/Moosync/Moosync/releases/download/v10.3.0/Moosync-10.3.0-linux-x64.pacman
+        sha256: 032fdd5fba3aba10fa9ec0ae0893186680dada027d9a0d6896160a0f7462e92e
         dest-filename: Moosync-linux-x64.tar.xz
         dest: Moosync
 
       - type: git
         url: https://github.com/Moosync/Moosync.git
         # branch: dev
-        tag: v10.2.0
+        tag: v10.3.0
         disable-submodules: true
 
       - generated-sources.json
