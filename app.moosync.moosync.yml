@@ -1,12 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
 - org.freedesktop.Sdk.Extension.node18
 - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: "22.08"
+base-version: "23.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -41,7 +41,7 @@ modules:
 - name: Moosync
   buildsystem: simple
   build-options:
-    append-path: /usr/lib/sdk/node16/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
+    append-path: /usr/lib/sdk/node18/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
     env:
       ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
       ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
