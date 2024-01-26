@@ -38,10 +38,22 @@ modules:
     url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
     sha256: 732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e
 
+- name: node-gyp
+  buildsystem: simple
+  build-commands:
+  - install -Dm755  node-gyp /app/bin
+  cleanup:
+  - "*"
+  sources:
+  - type: script
+    dest-filename: node-gyp
+    commands:
+    - node /usr/lib/sdk/node18/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js $@
+
 - name: Moosync
   buildsystem: simple
   build-options:
-    append-path: /usr/lib/sdk/node18/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
+    append-path: /app/bin:/usr/lib/sdk/node18/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
     env:
       ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
       ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
