@@ -1,12 +1,12 @@
 app-id: app.moosync.moosync
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
 - org.freedesktop.Sdk.Extension.node18
 - org.freedesktop.Sdk.Extension.rust-stable
 base: org.electronjs.Electron2.BaseApp
-base-version: "22.08"
+base-version: "23.08"
 command: moosync
 rename-icon: moosync
 separate-locales: false
@@ -38,6 +38,7 @@ modules:
     url: https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz
     sha256: 732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e
 
+<<<<<<< HEAD
 - name: Moosync
   buildsystem: simple
   build-options:
@@ -53,15 +54,15 @@ modules:
       CARGO_NET_OFFLINE: "true"
   sources:
   - type: archive
-    url: https://github.com/Moosync/Moosync/releases/download/v10.3.0/Moosync-10.3.0-linux-x64.pacman
-        sha256: cc78b8c7cbdc507ca2ddcbe36a1da6236b0076c8f0cd259d614822580efd4c65
+    url: https://github.com/Moosync/Moosync/releases/download/v10.3.1/Moosync-10.3.1-linux-x64.pacman
+        sha256: e7e63356df69e51a60018727cf0aef80c5cb1ed664debe81c5497a5eff934aeb
     dest-filename: Moosync-linux-x64.tar.xz
     dest: Moosync
 
   - type: git
     url: https://github.com/Moosync/Moosync.git
     # branch: dev
-    tag: v10.3.0
+    tag: v10.3.1
     disable-submodules: true
 
   - generated-sources.json
@@ -100,6 +101,82 @@ modules:
   - rm -f /app/Moosync/resources/app.asar
   - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
 
+=======
+- name: node-gyp
+  buildsystem: simple
+  build-commands:
+  - install -Dm755  node-gyp /app/bin
+  cleanup:
+  - "*"
+  sources:
+  - type: script
+    dest-filename: node-gyp
+    commands:
+    - node /usr/lib/sdk/node18/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js $@
+
+- name: Moosync
+  buildsystem: simple
+  build-options:
+    append-path: /app/bin:/usr/lib/sdk/node18/bin:/app/yarn/bin:/usr/lib/sdk/rust-stable/bin
+    env:
+      ELECTRON_CACHE: /run/build/Moosync/flatpak-node/electron-cache
+      ELECTRON_BUILDER_CACHE: /run/build/Moosync/flatpak-node/electron-cache
+      PLAYWRIGHT_BROWSERS_PATH: /run/build/Moosync/flatpak-node/cache/ms-playwright
+      ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+      npm_config_nodedir: /run/build/Moosync/flatpak-node/node-gyp/electron-current
+      npm_config_runtime: electron
+      CARGO_HOME: /run/build/Moosync/cargo
+      CARGO_NET_OFFLINE: "true"
+  sources:
+  - type: archive
+    url: https://github.com/Moosync/Moosync/releases/download/v10.3.1/Moosync-10.3.1-linux-x64.pacman
+        sha256: e7e63356df69e51a60018727cf0aef80c5cb1ed664debe81c5497a5eff934aeb
+    dest-filename: Moosync-linux-x64.tar.xz
+    dest: Moosync
+
+  - type: git
+    url: https://github.com/Moosync/Moosync.git
+    # branch: dev
+    tag: v10.3.1
+    disable-submodules: true
+
+  - generated-sources.json
+  - generated-sources-cargo.json
+  - generated-sources-cargo-scanner.json
+
+  - type: file
+    path: app.moosync.moosync.appdata.xml
+
+  - type: file
+    path: patch-cargo.sh
+
+  - type: script
+    dest-filename: moosync.sh
+    commands:
+    # TODO: Find a way to get extension-host and relaunch working with zypak
+    - TMPDIR=$XDG_RUNTIME_DIR/$APP_ID/ && /app/Moosync/moosync --no-sandbox "$@"
+
+  build-commands:
+  # Build native modules
+  - HOME=$PWD yarn config --offline set nodedir $FLATPAK_BUILDER_BUILDDIR/flatpak-node/node-gyp/electron-current
+  - HOME=$PWD yarn config --offline set yarn-offline-mirror $FLATPAK_BUILDER_BUILDDIR/flatpak-node/yarn-mirror
+  - "sed -i -e '/...archElectronConfig,/a electronDownload: { cache: \"/run/build/Moosync/flatpak-node/electron-cache\" },' vue.config.js"
+
+  - ls
+
+  - chmod +x ./patch-cargo.sh && sh ./patch-cargo.sh
+
+  - npm_config_runtime=electron CARGO_HOME=/run/build/Moosync/cargo CARGO_NET_OFFLINE="true" ELECTRON_SKIP_BINARY_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH="$FLATPAK_BUILDER_BUILDDIR/flatpak-node/cache/ms-playwright" yarn install --offline
+
+  - install -d /app/Moosync/resources/app.asar.unpacked/node_modules
+  - |
+    . $FLATPAK_BUILDER_BUILDDIR/flatpak-node/electron-builder-arch-args.sh
+    yarn electron:build -- $ELECTRON_BUILDER_ARCH_ARGS --linux --dir
+  - cp -a dist_electron/linux*unpacked/* /app/Moosync
+  - rm -f /app/Moosync/resources/app.asar
+  - cp Moosync/Moosync/resources/app.asar /app/Moosync/resources/
+
+>>>>>>> a299b314ffbf5bc9974a42c55de04cf12c140268
   - install -Dm755 moosync.sh /app/bin/moosync
   - install -d /app/share/applications
   - install -Dm644 Moosync/share/applications/moosync.desktop /app/share/applications/${FLATPAK_ID}.desktop
