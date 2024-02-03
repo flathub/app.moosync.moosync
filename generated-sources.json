@@ -927,55 +927,6 @@
     },
     {
         "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/biome/-/biome-1.0.0.tgz#bf00263afe77532fbfd626430bd4611ef06dad26",
-        "sha512": "63908d0f5419e6917a85ce1d170e48b43badbfd2893bdd64b0b741205caf1cbecb9973745289aacb2456af2bebaaaf98940f10e7c711eacaa38d0b8ca7d13622",
-        "dest-filename": "@biomejs-biome-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-1.0.0.tgz#215ef7d880dfd6e2ef3af2da85b222ff7ef60950",
-        "sha512": "defee4132c647f70f6e3a7ac1feabf9432b9c169fec4b0976691c2b9cd62b40982df91a411ce92eee9ba0b5543dd72972f1e8dd2c251feb4e68ca891195df622",
-        "dest-filename": "@biomejs-cli-darwin-arm64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-darwin-x64/-/cli-darwin-x64-1.0.0.tgz#aeba83a254a2a6f27844c9b3b42f0125f373fafd",
-        "sha512": "bb120cb7f5fb4d05a2723b089a4a8cbd4504a9a1594ce249aed12194797f7886844d62662b7b8047b8a121672da46267375eac520a4b83073373b1444eabbf3d",
-        "dest-filename": "@biomejs-cli-darwin-x64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-linux-arm64/-/cli-linux-arm64-1.0.0.tgz#eb778af8215720de3e70066d8d994d07e46310b1",
-        "sha512": "9095adbb75ebe0c747576627e14f9e66e74018f82fd244428d6032ccb45ec098aa1394cb3eb5f4f22981f525359f7f95c4d3bc7b6249d2d596047a3827e69212",
-        "dest-filename": "@biomejs-cli-linux-arm64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-linux-x64/-/cli-linux-x64-1.0.0.tgz#9ce1fc2cf36035b9a0d75786b587e8f4c8a00b75",
-        "sha512": "14aea1619d0b924dfd797631d7ed995ad2e402973445d3a97230d533de896ef2346f1aaf3679b5f7704f5eec61e40fdf0a5e8ddbc44d52f70a9d9e4b6e067463",
-        "dest-filename": "@biomejs-cli-linux-x64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-win32-arm64/-/cli-win32-arm64-1.0.0.tgz#db2f1672850daacfa1f504c274befa83d4872b6b",
-        "sha512": "904f8e6368ac1091c1a1d88b3cc9726d97241e49770905acbd7b8912f4b19283212db1833c4577c99ff4944a61dc19713f728fe6f50ede138519a4ef1c53aea9",
-        "dest-filename": "@biomejs-cli-win32-arm64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
-        "url": "https://registry.yarnpkg.com/@biomejs/cli-win32-x64/-/cli-win32-x64-1.0.0.tgz#25a667363afe16dea036a911c90f168952317185",
-        "sha512": "2a8e99b1b99b49c3cc12787fc73e26c034826485020048db6db9d4540a600002f6fb51e87bb567861d918b0611ab2ded1eb048303c17912c63d2f95fd46dc41e",
-        "dest-filename": "@biomejs-cli-win32-x64-1.0.0.tgz",
-        "dest": "flatpak-node/yarn-mirror"
-    },
-    {
-        "type": "file",
         "url": "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1",
         "sha512": "21c84d7fa74de2d1e8305227ffb384f0b599d7d63aabfebb0667fabe719112ff1149b0556fd2cf27111c9f0adcc17ea2c52bda886a2898052fbb8612c57ad583",
         "dest-filename": "@cspotcode-source-map-support-0.8.1.tgz",
@@ -1427,6 +1378,48 @@
         "url": "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f",
         "sha512": "3f5b2dd1a92c0ab9fdb06661a7c18c63006742c6ef016b19017e38a1734dbcb1c6a8039ca15c668d98a886cb7043b4aa2a76d1e3b6a474d8beba57960fcfa0e8",
         "dest-filename": "@popperjs-core-2.11.8.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-darwin-arm64/-/cli-darwin-arm64-12.1.3.tgz#b00fe225e34047c4dac63588e237b11ebec47694",
+        "sha512": "02615350362306e106429fd6c29b3ed9ca94afeaa147b8325c052790be69b02b8d0b3dfcd3b4eb52afde70ea1cb793086af1894c7e91e1a6922faf9ff9594112",
+        "dest-filename": "@rometools-cli-darwin-arm64-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-darwin-x64/-/cli-darwin-x64-12.1.3.tgz#e5bbf02afb1aab7447e743092245dea992b4b29f",
+        "sha512": "93c31b5a76bcab82d195bd34e4dd97f894b5510facdd92c106fc24e1f3fc4c1c650095d4cf5ee32cbbbf162fbb0d34c498c84cf384d68f8143296fab35aaf6f2",
+        "dest-filename": "@rometools-cli-darwin-x64-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-linux-arm64/-/cli-linux-arm64-12.1.3.tgz#e75b01b74c134edc811e21fa7e1e440602930d59",
+        "sha512": "5ffb8b849dbf14d0379eee538b278d3ea883dce66815f35f46fc3a6b7badd2311110fbc49fbd8d23b58f8a31ff8314b3e79ce77d0ed443a88ce0366e99492726",
+        "dest-filename": "@rometools-cli-linux-arm64-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-linux-x64/-/cli-linux-x64-12.1.3.tgz#2b9f4a68079783f275d4d27df83e4fa2220ec6fc",
+        "sha512": "72c3f5eead5e5a2517c7dcfa26bfc924f89b929972288c2258f60dcef3c2184f291e52a1c198f760746ebbb0e6ff810eab1d17148baaa96654626f5b9080bcc6",
+        "dest-filename": "@rometools-cli-linux-x64-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-win32-arm64/-/cli-win32-arm64-12.1.3.tgz#714acb67ac4ea4c15e2bc6aea4dd290c76c8efc6",
+        "sha512": "47298759ea1de7b1013896383fadfa0a0530600e8141d9108e1e7a5ca938a4b1073ba5f56c5c8c7add972fb2a51f0e6a3936a5ceecdfe6326a52cfaf7f78dd5d",
+        "dest-filename": "@rometools-cli-win32-arm64-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
+        "url": "https://registry.yarnpkg.com/@rometools/cli-win32-x64/-/cli-win32-x64-12.1.3.tgz#b4f53491d2ca8f1234b3613b7cc73418ad8d76bb",
+        "sha512": "c8748a62276a24c57d9c00ea83bf06600f9c674852d6dc003408e21626d07578fd686cc3facfc8cc8144222fd4fce04bbd6620fd20b0d10568ce2daf4e52850d",
+        "dest-filename": "@rometools-cli-win32-x64-12.1.3.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -10265,6 +10258,13 @@
     },
     {
         "type": "file",
+        "url": "https://registry.yarnpkg.com/rome/-/rome-12.1.3.tgz#4d4d62cad16216843680bd3ca11a4c248134902a",
+        "sha512": "7be7dfef68710e97bfb79fd4b3b611055c373c1113ed279ccd340d9fab6fad676b09a030dea3ae91043eb430a4c85b52e321ac9e18eb25b9b8ddcb4d6f3dbb62",
+        "dest-filename": "rome-12.1.3.tgz",
+        "dest": "flatpak-node/yarn-mirror"
+    },
+    {
+        "type": "file",
         "url": "https://registry.yarnpkg.com/run-async/-/run-async-2.4.1.tgz#8440eccf99ea3e70bd409d49aab88e10c189a455",
         "sha512": "b6f56756fd356fc73546b03a129ec9912b63f391aebff62b31cc2a6109f08ec012d9c4e698f181063023a425bb46b4a874d4a8136fea83d3b86dc78dbd4b8381",
         "dest-filename": "run-async-2.4.1.tgz",
@@ -12689,11 +12689,11 @@
     {
         "type": "shell",
         "commands": [
-            "cd flatpak-node/tmp/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420; git archive --format tar -o ../../yarn-mirror/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420 HEAD",
-            "cd flatpak-node/tmp/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598; git archive --format tar -o ../../yarn-mirror/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598 HEAD",
-            "cd flatpak-node/tmp/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2; git archive --format tar -o ../../yarn-mirror/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2 HEAD",
             "cd flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f; git archive --format tar -o ../../yarn-mirror/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f HEAD",
-            "cd flatpak-node/tmp/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606; git archive --format tar -o ../../yarn-mirror/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606 HEAD"
+            "cd flatpak-node/tmp/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598; git archive --format tar -o ../../yarn-mirror/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598 HEAD",
+            "cd flatpak-node/tmp/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420; git archive --format tar -o ../../yarn-mirror/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420 HEAD",
+            "cd flatpak-node/tmp/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606; git archive --format tar -o ../../yarn-mirror/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606 HEAD",
+            "cd flatpak-node/tmp/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2; git archive --format tar -o ../../yarn-mirror/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2 HEAD"
         ]
     }
 ]
