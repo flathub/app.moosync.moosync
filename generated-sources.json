@@ -12689,11 +12689,11 @@
     {
         "type": "shell",
         "commands": [
-            "cd flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f; git archive --format tar -o ../../yarn-mirror/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f HEAD",
             "cd flatpak-node/tmp/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420; git archive --format tar -o ../../yarn-mirror/file-scanner.git-8f7cdf139b82cf08c89addbb6772be7ef3a0f420 HEAD",
+            "cd flatpak-node/tmp/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f; git archive --format tar -o ../../yarn-mirror/vm2.git-b51d33c49b61e03cf67a075741790e9b938dd80f HEAD",
+            "cd flatpak-node/tmp/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2; git archive --format tar -o ../../yarn-mirror/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2 HEAD",
             "cd flatpak-node/tmp/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606; git archive --format tar -o ../../yarn-mirror/librespot-node.git-0fe55128b0ef94fc3823d5fcf162cfcff6002606 HEAD",
-            "cd flatpak-node/tmp/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598; git archive --format tar -o ../../yarn-mirror/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598 HEAD",
-            "cd flatpak-node/tmp/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2; git archive --format tar -o ../../yarn-mirror/MediaController.git-185de380ad3b3c8c0c137ab314e52ea44a218cb2 HEAD"
+            "cd flatpak-node/tmp/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598; git archive --format tar -o ../../yarn-mirror/node-rodio-backend-57feb7cec6d93a2545f33d9b50a2b5460439c598 HEAD"
         ]
     }
 ]
