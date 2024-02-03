@@ -79,6 +79,7 @@ modules:
   - generated-sources.json
   - generated-sources-cargo.json
   - generated-sources-cargo-scanner.json
+  - generated-sources-rodio.json
 
   - type: file
     path: app.moosync.moosync.appdata.xml
