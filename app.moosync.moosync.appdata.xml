@@ -5,6 +5,7 @@
   <summary>Customizable music player</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
+  <developer_name>Sahil Gupte</developer_name>
   <url type="homepage">https://moosync.app</url>
   <icon type="remote" height="512" width="512">
     https://raw.githubusercontent.com/Moosync/Moosync/main/build/icons/icon.png</icon>
@@ -55,6 +56,7 @@
     <category>Network</category>
   </categories>
   <releases>
+    <release version="10.3.2" date="2024-02-01" />
     <release version="10.1.2" date="2023-10-11" />
     <release version="8.0.0" date="2023-04-09" />
     <release version="7.1.0" date="2023-01-08" />

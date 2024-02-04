@@ -65,20 +65,21 @@ modules:
       CARGO_NET_OFFLINE: "true"
   sources:
   - type: archive
-    url: https://github.com/Moosync/Moosync/releases/download/v10.3.0/Moosync-10.3.0-linux-x64.pacman
-    sha256: cc78b8c7cbdc507ca2ddcbe36a1da6236b0076c8f0cd259d614822580efd4c65
+    url: https://github.com/Moosync/Moosync/releases/download/v10.3.2/Moosync-10.3.2-linux-x64.pacman
+    sha256: 5dbb7b325ecd5e89f78ab71159b25f1633a459136fcbf8ee30e376820171cfc2
     dest-filename: Moosync-linux-x64.tar.xz
     dest: Moosync
 
   - type: git
     url: https://github.com/Moosync/Moosync.git
     # branch: dev
-    tag: v10.3.0
+    tag: main
     disable-submodules: true
 
   - generated-sources.json
   - generated-sources-cargo.json
   - generated-sources-cargo-scanner.json
+  - generated-sources-rodio.json
 
   - type: file
     path: app.moosync.moosync.appdata.xml
