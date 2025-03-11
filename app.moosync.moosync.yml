@@ -30,8 +30,8 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/Moosync/Moosync/releases/download/Moosync-v0.0.11/Moosync_0.0.11_amd64.deb
-        sha256: a90631d1c519d74677b808b212a67d43dea5ac9595bcae24c961b5136b73765a # This is required if you are using a remote source
+        url: https://github.com/Moosync/Moosync/releases/download/Moosync-v11.0.0/Moosync_11.0.0_amd64.deb
+        sha256: 42c0f80fde93b0be15840a1adf427c403869fb6ee3993b9ebad640f433b17b31 # This is required if you are using a remote source
         only-arches: [x86_64]
 
       - type: file
