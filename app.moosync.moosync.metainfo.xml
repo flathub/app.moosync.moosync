@@ -35,12 +35,12 @@
     <screenshot type="default">
       <caption>Music info and Queue</caption>
       <image>
-        https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_musicinfo_view.png?raw=true</image>
+        https://github.com/Moosync/Moosync/blob/main/extras/screenshot_musicinfo_view.png?raw=true</image>
     </screenshot>
     <screenshot>
       <caption>Song view</caption>
       <image
-            >https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_song_view.png?raw=true</image>
+            >https://github.com/Moosync/Moosync/blob/main/extras/screenshot_song_view.png?raw=true</image>
     </screenshot>
   </screenshots>
 
