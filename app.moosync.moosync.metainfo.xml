@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <component type="desktop-application">
   <id>app.moosync.moosync</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -8,10 +8,12 @@
   <developer id="app.moosync.moosync.ovenoboyo">
     <name>Sahil Gupte</name>
   </developer>
-  
+
   <description>
-    <p>Moosync is a simple music player with a primary goal to provide a clean and easy interface.</p>
-    <p>Through Moosync you can easily listen songs from your desktop or through Youtube and Spotify.</p>
+    <p
+        >Moosync is a simple music player with a primary goal to provide a clean and easy interface.</p>
+    <p
+        >Through Moosync you can easily listen songs from your desktop or through Youtube and Spotify.</p>
     <p>Some of its features include:</p>
     <ul>
       <li>Play audio files on your desktop.</li>
@@ -19,7 +21,8 @@
       <li>Add Spotify and Youtube tracks and playlists by URLs.</li>
       <li>Play songs directly from youtube using youtube embed.</li>
       <li>Scrobble your tracks on LastFM.</li>
-      <li>Get music recommendations directly from Spotify, Youtube and LastFM</li>
+      <li
+            >Get music recommendations directly from Spotify, Youtube and LastFM</li>
       <li>Mix and match songs from different providers in a single playlist</li>
       <li>Easy to use interface</li>
       <li>Customizable theme engine</li>
@@ -27,12 +30,25 @@
       <li>Available on Windows and Linux and MacOS</li>
     </ul>
   </description>
-  
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Music info and Queue</caption>
+      <image>
+        https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_musicinfo_view.png?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <caption>Song view</caption>
+      <image
+            >https://github.com/Moosync/Moosync/blob/dev/extras/screenshot_song_view.png?raw=true</image>
+    </screenshot>
+  </screenshots>
+
   <launchable type="desktop-id">app.moosync.moosync.desktop</launchable>
-  
+
   <url type="homepage">https://moosync.app</url>
   <url type="bugtracker">https://github.com/Moosync/Moosync/issues</url>
-  
+
   <provides>
     <binary>moosync</binary>
   </provides>
@@ -70,4 +86,4 @@
   <project_group>Moosync</project_group>
 
   <icon type="stock">app.moosync.moosync</icon>
-</component> 
+</component>
