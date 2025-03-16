@@ -32,8 +32,13 @@ modules:
     sources:
       - type: file
         url: https://github.com/Moosync/Moosync/releases/download/Moosync-v11.0.2/Moosync_11.0.2_amd64.deb
-        sha256: fcca027b8c3c5d28f18cf9641f61f4db008cce7dee6de17f207732a8f549b1ac # This is required if you are using a remote source
+        sha256: fcca027b8c3c5d28f18cf9641f61f4db008cce7dee6de17f207732a8f549b1ac
         only-arches: [x86_64]
+
+      - type: file
+        url: https://github.com/Moosync/Moosync/releases/download/Moosync-v11.0.2/Moosync_11.0.2_arm64.deb
+        sha256: d4dca8194419d526182c59bb1fbcd7e772460bfb921ff024441b0f6eb3ab114b
+        only-arches: [aarch64]
 
       - type: file
         path: app.moosync.moosync.metainfo.xml
