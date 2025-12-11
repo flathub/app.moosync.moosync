@@ -1,7 +1,7 @@
 id: app.moosync.moosync
 app-id: app.moosync.moosync
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "49"
 rename-icon: moosync
 sdk: org.gnome.Sdk
 command: moosync
